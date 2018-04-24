@@ -1,0 +1,84 @@
+{
+  "name": "OLLIE_PROJECT_NAME",
+  "version": "1.0.0",
+  "description": "NodeJS project",
+  "main": "./build/server.js",
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "start": "node ./build/server.js",
+    "serve": "yarn build && yarn start",
+    "clean": "rimraf ./build",
+    "lint": "tslint 'src/**/*.ts'",
+    "pretest": "NODE_ENV=test yarn db:migrate",
+    "test": "jest --maxWorkers=1 --forceExit",
+    "test:coverage": "yarn pretest && jest --coverage --maxWorkers=1 --collectCoverageFrom=src/**/*.ts --forceExit",
+    "test:watch": "jest --watchAll",
+    "db:seed": "node_modules/knex/bin/cli.js seed:run",
+    "db:migrate": "node_modules/knex/bin/cli.js migrate:latest",
+    "heroku-postbuild": "node_modules/typescript/bin/tsc",
+    "audit": "node_modules/auditjs/audit.js"
+  },
+  "precommit": [
+    "lint"
+  ],
+  "dependencies": {
+    "dotenv-safe": "~5.0.1",
+    "express": "~4.16.2",
+    "express-validation": "^1.0.2",
+    "http-status": "~1.0.1",
+    "joi": "~13.2.0",
+    "jsonade": "~1.1.0",
+    "knex": "~0.14.6",
+    "lodash": "~4.17.5",
+    "mandrill-api": "~1.0.45",
+    "pg": "~7.4.1",
+    "redis": "~2.8.0",
+    "tree-house": "~3.2.0",
+    "tree-house-authentication": "~2.0.5",
+    "tree-house-errors": "^1.0.3",
+    "uuid": "~3.2.1",
+    "winston": "~2.4.1"
+  },
+  "devDependencies": {
+    "@types/cors": "~2.8.3",
+    "@types/dotenv-safe": "~4.0.1",
+    "@types/express": "~4.11.0",
+    "@types/express-brute": "~0.0.36",
+    "@types/faker": "~4.1.2",
+    "@types/helmet": "~0.0.37",
+    "@types/http-status": "~0.2.30",
+    "@types/jest": "~22.2.2",
+    "@types/joi": "~13.0.7",
+    "@types/knex": "~0.14.11",
+    "@types/lodash": "~4.14.105",
+    "@types/mandrill-api": "~1.0.30",
+    "@types/redis": "~2.8.6",
+    "@types/supertest": "~2.0.4",
+    "@types/uuid": "~3.4.3",
+    "@types/winston": "~2.3.9",
+    "auditjs": "^2.4.3",
+    "coveralls": "^3.0.0",
+    "faker": "^4.1.0",
+    "jest": "^22.4.3",
+    "node-mocks-http": "^1.5.8",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.2",
+    "supertest": "^3.0.0",
+    "ts-jest": "~22.4.4",
+    "tslint": "^5.9.1",
+    "tslint-config-airbnb": "^5.8.0",
+    "typescript": "^2.8.1"
+  },
+  "engines": {
+    "node": "8"
+  },
+  "author": "iCapps <info@icapps.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icapps/nodejs-silverback/issues"
+  },
+  "homepage": "https://github.com/icapps/nodejs-silverback#readme",
+  "directories": {
+    "test": "tests"
+  }
+}

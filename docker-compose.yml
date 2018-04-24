@@ -1,0 +1,19 @@
+version: '3.3'
+services:
+  redis:
+    image: redis:latest
+    container_name: redis_silverback
+    ports:
+      - "6379:6379"
+  postgres:
+    image: sameersbn/postgresql:latest
+    container_name: pgsql_silverback
+    ports:
+    - "5432:5432"
+    environment:
+      - DB_USER=developer
+      - DB_PASS=developer
+      - DB_NAME=silverback_test,silverback_dev
+      - DB_EXTENSION="uuid-ossp"
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
